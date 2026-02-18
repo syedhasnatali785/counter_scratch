@@ -1,7 +1,9 @@
 import 'package:counter_scratch/provider/count_provider.dart';
 import 'package:counter_scratch/provider/example_one_provider.dart';
 import 'package:counter_scratch/provider/favourite_provider.dart';
+import 'package:counter_scratch/provider/theme_changer_provider.dart';
 import 'package:counter_scratch/screen/count_example.dart';
+import 'package:counter_scratch/screen/dark_theme.dart';
 import 'package:counter_scratch/screen/example_one.dart';
 import 'package:counter_scratch/screen/favourite/favourite_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,9 +23,16 @@ class counterApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_)=>ExampleOneProvider()),
         ChangeNotifierProvider(create: (_)=>CountProvider()),
-      ChangeNotifierProvider(create: (_)=>FavouriteProvider())
+      ChangeNotifierProvider(create: (_)=>FavouriteProvider()),
+      ChangeNotifierProvider(create: (_)=> ThemeChangerProvider()),
     ],
-    child: MaterialApp(home: FavouriteScreen(),),);
+    child: Builder(builder: (BuildContext context){
+      final themeChanger = Provider.of<ThemeChangerProvider>(context);
+      return MaterialApp(
+        themeMode: themeChanger.themeMode,
+        home: DarkThemeScreen(),
+      );
+    }));
 
   }
 }
