@@ -1,5 +1,9 @@
 import 'package:counter_scratch/provider/count_provider.dart';
+import 'package:counter_scratch/provider/example_one_provider.dart';
+import 'package:counter_scratch/provider/favourite_provider.dart';
 import 'package:counter_scratch/screen/count_example.dart';
+import 'package:counter_scratch/screen/example_one.dart';
+import 'package:counter_scratch/screen/favourite/favourite_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +18,12 @@ class counterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (_)=>CountProvider(), child: MaterialApp(home: CountExample(),),)  ;
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_)=>ExampleOneProvider()),
+        ChangeNotifierProvider(create: (_)=>CountProvider()),
+      ChangeNotifierProvider(create: (_)=>FavouriteProvider())
+    ],
+    child: MaterialApp(home: FavouriteScreen(),),);
 
   }
 }
