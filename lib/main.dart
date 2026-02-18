@@ -1,5 +1,8 @@
+import 'package:counter_scratch/provider/count_provider.dart';
+import 'package:counter_scratch/screen/count_example.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'home_page.dart';
 
@@ -11,8 +14,7 @@ class counterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      home: HomePage(),
-    );
+    return ChangeNotifierProvider(create: (_)=>CountProvider(), child: MaterialApp(home: CountExample(),),)  ;
+
   }
 }
