@@ -17,15 +17,15 @@ class _DarkThemeScreenState extends State<DarkThemeScreen> {
       appBar: AppBar(title: Text("data")),
       body: Column(
         children: [
-          RadioListTile<ThemeMode>(
-            value: ThemeMode.light,
+          RadioGroup<ThemeMode>(
             groupValue: themeChanger.themeMode,
             onChanged: themeChanger.setTheme,
-          ),
-          RadioListTile(
-            value: ThemeMode.dark,
-            groupValue: themeChanger.themeMode,
-            onChanged: themeChanger.setTheme,
+            child: Column(
+              children: [
+                RadioListTile(value: ThemeMode.dark, title: Text("D")),
+                RadioListTile(value: ThemeMode.light, title: Text("L")),
+              ],
+            ),
           ),
         ],
       ),
